@@ -3,7 +3,6 @@ package com.smartpark.common.error;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -19,8 +18,8 @@ import java.util.Map;
 @Slf4j
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ChangeSetPersister.NotFoundException.class)
-    ResponseEntity<ApiError> notFound(ChangeSetPersister.NotFoundException e, HttpServletRequest req) {
+    @ExceptionHandler(NotFoundException.class)
+    ResponseEntity<ApiError> notFound(NotFoundException e, HttpServletRequest req) {
         return build(HttpStatus.NOT_FOUND, "NOT_FOUND", e.getMessage(), req);
     }
 

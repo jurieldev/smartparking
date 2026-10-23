@@ -1,7 +1,7 @@
 package com.smartpark.service;
 
 import com.smartpark.common.error.ConflictException;
-import com.smartpark.common.error.TextUtils;
+import com.smartpark.common.TextUtils;
 import com.smartpark.dto.vehicle.VehicleRequest;
 import com.smartpark.dto.vehicle.VehicleResponse;
 import com.smartpark.entity.vehicle.Vehicle;
