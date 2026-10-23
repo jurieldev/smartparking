@@ -1,8 +1,8 @@
 package com.smartpark.service;
 
 import com.smartpark.common.error.ConflictException;
-import com.smartpark.dto.LotRequest;
-import com.smartpark.dto.LotResponse;
+import com.smartpark.dto.lot.LotRequest;
+import com.smartpark.dto.lot.LotResponse;
 import com.smartpark.entity.lot.ParkingLot;
 import com.smartpark.repository.ParkingLotRepository;
 import lombok.RequiredArgsConstructor;

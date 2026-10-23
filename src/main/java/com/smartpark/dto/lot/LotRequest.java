@@ -1,4 +1,4 @@
-package com.smartpark.dto;
+package com.smartpark.dto.lot;
 
 import jakarta.validation.constraints.*;
 

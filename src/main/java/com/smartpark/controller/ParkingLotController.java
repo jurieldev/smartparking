@@ -1,7 +1,7 @@
 package com.smartpark.controller;
 
-import com.smartpark.dto.LotRequest;
-import com.smartpark.dto.LotResponse;
+import com.smartpark.dto.lot.LotRequest;
+import com.smartpark.dto.lot.LotResponse;
 import com.smartpark.service.ParkingLotService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
