@@ -1,10 +1,14 @@
 package com.smartpark.controller;
 
+import com.smartpark.common.error.NotFoundException;
 import com.smartpark.dto.lot.LotRequest;
 import com.smartpark.dto.lot.LotResponse;
+import com.smartpark.dto.parking.ParkedVehicleResponse;
 import com.smartpark.service.ParkingLotService;
+import com.smartpark.service.ParkingService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +20,7 @@ import java.util.List;
 public class ParkingLotController {
 
     private final ParkingLotService lotService;
+    private final ParkingService parkingService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -31,5 +36,12 @@ public class ParkingLotController {
     @GetMapping("/{lotId}/occupancy")
     public LotResponse occupancy(@PathVariable String lotId) {
         return lotService.get(lotId);
+    }
+
+
+
+    @GetMapping("/{lotId}/vehicles")
+    public List<ParkedVehicleResponse> parkedVehicles(@PathVariable String lotId) throws NotFoundException {
+        return parkingService.parkedVehicles(lotId);
     }
 }

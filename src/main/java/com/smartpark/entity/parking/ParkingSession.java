@@ -48,14 +48,5 @@ public class ParkingSession {
     @Column(name = "active_plate", unique = true, length = 20)
     private String activePlate;
 
-    /** Ceil to whole minutes, minimum 1. */
-    public static long billedMinutes(Instant from, Instant to) {
-        long seconds = Duration.between(from, to).getSeconds();
-        return Math.max(1, (seconds + 59) / 60);
-    }
-
-    public Long getBilledMinutes() {
-        return checkOutAt == null ? null : billedMinutes(checkInAt, checkOutAt);
-    }
 }
 

@@ -6,7 +6,7 @@ import com.smartpark.dto.lot.LotResponse;
 import com.smartpark.entity.lot.ParkingLot;
 import com.smartpark.repository.ParkingLotRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import com.smartpark.common.error.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,8 +46,8 @@ public class ParkingLotService {
     ParkingLot findOrThrow(String lotId) {
         try {
             return lotRepo.findById(lotId)
-                    .orElseThrow(ChangeSetPersister.NotFoundException::new);
-        } catch (ChangeSetPersister.NotFoundException e) {
+                    .orElseThrow(() -> new NotFoundException("Parking lot " + lotId + " not found."));
+        } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
     }
