@@ -19,3 +19,10 @@ spring:
 parking:
   max-duration-minutes: 15
   auto-checkout-interval-ms: 30000
+
+app:
+  security:
+    username: admin
+    password: admin123
+    jwt-secret: smartpark-demo-secret-change-me-0123456789
+    jwt-expiration-minutes: 60
