@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "f2e274c1-bdd9-4f11-badb-3849e3931aff",
+		"name": "SmartPark API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "59174363",
+		"_collection_link": "https://jurieldev-6245285.postman.co/workspace/Juriel-Jamilla's-Workspace~595488a7-615a-45ce-8e76-a699a2d7d9bb/collection/59174363-f2e274c1-bdd9-4f11-badb-3849e3931aff?action=share&source=collection_link&creator=59174363"
+	},
+	"item": [
+		{
+			"name": "Vehicle",
+			"item": [
+				{
+					"name": "Get All Vehicles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/vehicles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vehicles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Vehicle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"licensePlate\": \"NHV-2311\",\r\n    \"type\": \"CAR\",\r\n    \"ownerName\": \"Juriel Jami\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/vehicles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vehicles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Parking Lot",
+			"item": [
+				{
+					"name": "Currenty Parked Vehicles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/lots/{{lotId}}/vehicles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"lots",
+								"{{lotId}}",
+								"vehicles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Parking Lot Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/lots/{{lotId}}/occupancy",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"lots",
+								"{{lotId}}",
+								"occupancy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Parking Lot",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/lots",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"lots"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Parking Lot",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lotId\": \"LOT-MKT-04\",\r\n    \"location\": \"Makati CBD, Ayala Avenue\",\r\n    \"capacity\": 50,\r\n    \"occupiedSpaces\": 0,\r\n    \"availableSpaces\": 50,\r\n    \"costPerMinute\": 2.5\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/lots",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"lots"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Parking",
+			"item": [
+				{
+					"name": "Check In",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"licensePlate\": \"{{licensePlate}}\",\r\n    \"lotId\": \"{{lotId}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/parking/check-in",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"parking",
+								"check-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check-Out",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"licensePlate\" : \"{{licensePlate}}\",\r\n    \"lotId\": \"{{lotId}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/parking/check-out",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"parking",
+								"check-out"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(pm.response.json().token)\r",
+									"\r",
+									"pm.environment.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"{{userName}}\",\r\n    \"password\" : \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
