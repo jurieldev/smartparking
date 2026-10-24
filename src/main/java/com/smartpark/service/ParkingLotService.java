@@ -48,7 +48,7 @@ public class ParkingLotService {
             return lotRepo.findById(lotId)
                     .orElseThrow(() -> new NotFoundException("Parking lot " + lotId + " not found."));
         } catch (NotFoundException e) {
-            throw new RuntimeException(e);
+            throw new NotFoundException("LOT_NOT_FOUND");
         }
     }
 }

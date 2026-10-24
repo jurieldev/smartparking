@@ -57,11 +57,11 @@ public class ParkingService {
         s.setLot(lot);
         s.setCheckInAt(clock.instant());
         s.setStatus(SessionStatus.ACTIVE);
-        s.setActivePlate(plate);
+        s.setActivePlate(vehicle.getLicensePlate());
         // Flush now so a unique violation surfaces here and rolls back the +1 above.
         sessionRepo.saveAndFlush(s);
 
-        return new CheckInResponse(s.getId(), plate, lotId, s.getCheckInAt());
+        return new CheckInResponse(s.getId(), vehicle.getLicensePlate(), lotId, s.getCheckInAt());
     }
 
     @Transactional
@@ -82,7 +82,7 @@ public class ParkingService {
         return sessionRepo.findById(sessionId)
                 .filter(s -> s.getStatus() == SessionStatus.ACTIVE)
                 .flatMap(s -> tryClose(s,
-                        parkingFeeCalculator.autoRemovalEnd(s.getCheckInAt()),
+                        parkingFeeCalculator.cappedTimeLimit(s.getCheckInAt()),
                         SessionStatus.AUTO_REMOVED))
                 .isPresent();
     }

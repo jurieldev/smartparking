@@ -18,13 +18,13 @@ public class ParkingFeeCalculator {
     }
 
     /** When billing stops: the actual time, capped at check-in + max duration. */
-    public Instant billingEnd(Instant checkInAt, Instant now) {
-        Instant cappedTimeLimit = checkInAt.plus(maxDuration);
-        return cappedTimeLimit.isBefore(now) ? cappedTimeLimit : now;
+    public Instant billingEnd(Instant checkInAt, Instant checkOutAt) {
+        Instant cappedTimeLimit = cappedTimeLimit(checkInAt);
+        return cappedTimeLimit.isBefore(checkOutAt) ? cappedTimeLimit : checkOutAt;
     }
 
     /** End time used for auto-removed sessions. */
-    public Instant autoRemovalEnd(Instant checkInAt) {
+    public Instant cappedTimeLimit(Instant checkInAt) {
         return checkInAt.plus(maxDuration);
     }
 
